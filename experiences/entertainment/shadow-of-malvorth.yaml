@@ -1,0 +1,196 @@
+# Shadow of Malvorth — An Epic Dungeon Adventure
+# A 7-act immersive experience with lights, visuals, and narration
+
+name: Shadow of Malvorth
+description: A 7-act dungeon adventure with coordinated narration, atmospheric visuals, and immersive lighting
+version: 1.0.0
+author: reflectt-io
+duration_estimate_ms: 270000  # ~4.5 minutes
+tags: [narrative, immersive, dungeon, adventure]
+
+requires:
+  screens: true
+  lights: true
+  audio: true
+
+defaults:
+  voice: narrator
+  transition_ms: 2000
+
+acts:
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # ACT 1: THE TAVERN
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: The Tavern
+    duration_ms: 30000
+    steps:
+      - type: light_mood
+        mood: safe
+        delay_ms: 0
+        
+      - type: screen_update_all
+        scene: dungeon-tavern
+        delay_ms: 500
+        
+      - type: speak
+        text: >
+          The tavern is warm. Firelight dances on weathered faces.
+          You nurse your ale, listening to whispers of treasure
+          in the catacombs below.
+        delay_ms: 2000
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # ACT 2: THE DESCENT
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: The Descent
+    duration_ms: 25000
+    steps:
+      - type: light_mood
+        mood: tension
+        delay_ms: 0
+        
+      - type: screen_update_all
+        scene: dungeon-corridor
+        delay_ms: 2000
+        
+      - type: speak
+        text: >
+          Stone steps spiral down into darkness.
+          Your torch gutters in the damp air.
+          Something moves in the shadows ahead.
+        delay_ms: 3000
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # ACT 3: THE CORRIDOR
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: The Corridor
+    duration_ms: 30000
+    steps:
+      - type: light_mood
+        mood: darkness
+        delay_ms: 0
+        
+      - type: light_effect
+        effect: flicker
+        duration: 20
+        intensity: 0.6
+        delay_ms: 1000
+        
+      - type: speak
+        text: >
+          The corridor stretches endlessly before you.
+          Water drips from ancient stone.
+          Your footsteps echo... but you hear another set behind you.
+        delay_ms: 4000
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # ACT 4: THE ENCOUNTER
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: The Encounter
+    duration_ms: 35000
+    steps:
+      - type: light_mood
+        mood: combat
+        delay_ms: 0
+        
+      - type: screen_update_all
+        scene: dungeon-combat
+        delay_ms: 500
+        
+      - type: light_effect
+        effect: pulse
+        color: [255, 50, 50]
+        delay_ms: 1000
+        
+      - type: speak
+        text: >
+          A BEAST emerges from the shadows! 
+          Claws slash through torchlight.
+          Steel rings against scale. 
+          You fight for your life!
+        delay_ms: 2000
+        
+      - type: light_effect
+        effect: strobe
+        duration: 2
+        color: [255, 100, 50]
+        delay_ms: 8000
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # ACT 5: VICTORY
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: Victory
+    duration_ms: 30000
+    steps:
+      - type: light_mood
+        mood: treasure
+        delay_ms: 0
+        
+      - type: screen_update_all
+        scene: dungeon-treasure
+        delay_ms: 1000
+        
+      - type: speak
+        text: >
+          The beast falls. In the silence that follows,
+          you see it... a chest, gleaming with ancient gold.
+          Fortune favors the bold!
+        delay_ms: 3000
+        
+      - type: light_effect
+        effect: breathe
+        duration: 10
+        intensity: 0.8
+        delay_ms: 8000
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # ACT 6: THE ESCAPE
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: The Escape
+    duration_ms: 25000
+    steps:
+      - type: light_mood
+        mood: tension
+        delay_ms: 0
+        
+      - type: screen_update_all
+        scene: dungeon-corridor
+        delay_ms: 500
+        
+      - type: speak
+        text: >
+          The dungeon rumbles! Dust falls from above.
+          You must escape before the catacombs collapse.
+          RUN!
+        delay_ms: 2000
+        
+      - type: light_effect
+        effect: flicker
+        duration: 15
+        speed: fast
+        delay_ms: 6000
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # ACT 7: THE RETURN
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: The Return
+    duration_ms: 30000
+    steps:
+      - type: light_mood
+        mood: victory
+        delay_ms: 0
+        
+      - type: screen_update_all
+        scene: dungeon-tavern
+        delay_ms: 2000
+        
+      - type: speak
+        text: >
+          You emerge into moonlight, treasure in hand.
+          The tavern awaits with warm fires and warmer ale.
+          Tonight, you are the hero of your own legend.
+        delay_ms: 4000
+        
+      - type: light_mood
+        mood: cozy
+        delay_ms: 15000

@@ -1,0 +1,109 @@
+# Experience Template
+# Copy this file and fill in your own experience
+# Delete these comment lines when done
+
+name: Your Experience Name
+description: A one-line description of what this experience does
+version: 1.0.0
+tags: [tag1, tag2, tag3]
+duration_estimate_ms: 30000  # How long does it run? (in milliseconds)
+
+# What hardware does this experience need?
+requires:
+  screens: true   # true if you use screen_update_all
+  lights: true    # true if you control lights
+  audio: false    # true if you use speak/TTS
+
+# Default settings (optional)
+defaults:
+  voice: samantha       # TTS voice: samantha, narrator, etc.
+  transition_ms: 2000   # Default light transition time
+
+# The experience itself — a sequence of acts
+acts:
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # ACT 1: INTRO
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: Intro
+    duration_ms: 10000
+    steps:
+      # Set the mood with lighting
+      - type: light_mood
+        mood: cozy        # cozy, focus, movie, party, calm, etc.
+        delay_ms: 0
+        
+      # Optional: Speak to the user
+      - type: speak
+        text: Welcome to your experience!
+        delay_ms: 1000
+        
+      # Update all screens with HTML content
+      - type: screen_update_all
+        html: |
+          <!DOCTYPE html>
+          <style>
+            body { 
+              background: #000; 
+              color: #fff; 
+              display: flex; 
+              align-items: center; 
+              justify-content: center; 
+              height: 100vh; 
+              font-family: sans-serif; 
+            }
+          </style>
+          <h1>Your Content Here</h1>
+        delay_ms: 2000
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # ACT 2: MAIN
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: Main
+    duration_ms: 15000
+    steps:
+      # More steps here...
+      - type: light_set
+        target: all
+        brightness_pct: 50
+        kelvin: 3000         # Warm white
+        transition: 5        # 5 second transition
+        delay_ms: 0
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # ACT 3: OUTRO
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: Outro
+    duration_ms: 5000
+    steps:
+      - type: speak
+        text: Experience complete. Hope you enjoyed it!
+        delay_ms: 0
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STEP TYPE REFERENCE
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+# light_mood: Set predefined lighting mood
+#   mood: cozy | focus | movie | party | calm | safe | tension | darkness | combat | victory
+#
+# light_set: Set specific light values
+#   target: all | <light_name>
+#   brightness_pct: 0-100
+#   color: [R, G, B] (0-255 each)
+#   kelvin: 2000-6500 (warm to cool)
+#   transition: seconds
+#
+# light_effect: Trigger dynamic effect
+#   effect: breathe | pulse | flicker | strobe
+#   duration: seconds
+#   intensity: 0.0-1.0
+#   speed: slow | normal | fast
+#   color: [R, G, B] (optional)
+#
+# screen_update_all: Update all screens
+#   html: HTML string (inline)
+#   scene: predefined scene name
+#
+# speak: Text-to-speech
+#   text: What to say
+#   voice: (optional) override default voice

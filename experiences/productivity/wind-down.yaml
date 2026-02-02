@@ -1,0 +1,72 @@
+# Wind Down — Evening Transition
+# Shifts from active to restful atmosphere
+
+name: Wind Down
+description: Evening transition with warm amber lighting and calm visuals
+version: 1.0.0
+author: reflectt-io
+duration_estimate_ms: 30000  # ~30 seconds setup, then indefinite
+tags: [evening, calm, transition, routine]
+
+requires:
+  screens: true
+  lights: true
+
+defaults:
+  voice: samantha
+  transition_ms: 3000
+
+acts:
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # TRANSITION
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: Transition
+    duration_ms: 15000
+    steps:
+      # Warm amber lighting
+      - type: light_mood
+        mood: cozy
+        delay_ms: 0
+        
+      - type: speak
+        text: Time to wind down for the evening.
+        delay_ms: 2000
+        
+      # Show calm clock with tomorrow preview
+      - type: screen_update_all
+        html: |
+          <!DOCTYPE html>
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300&display=swap');
+            *{margin:0;padding:0;box-sizing:border-box}
+            body{background:linear-gradient(145deg,#1a1a2e 0%,#16213e 50%,#1a1a2e 100%);height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Inter',sans-serif;color:#fff}
+            .time{font-size:200px;font-weight:100;color:rgba(255,200,150,0.9);text-shadow:0 0 60px rgba(255,180,100,0.3)}
+            .message{font-size:24px;font-weight:200;color:rgba(255,255,255,0.4);margin-top:40px}
+            .ambient{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,180,100,0.1),transparent 70%);filter:blur(50px);animation:pulse 8s ease-in-out infinite}
+            @keyframes pulse{0%,100%{transform:scale(1);opacity:0.5}50%{transform:scale(1.1);opacity:0.7}}
+          </style>
+          <div class="ambient"></div>
+          <div class="time" data-clock="time">9:30 PM</div>
+          <div class="message">Rest well tonight</div>
+        delay_ms: 3000
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # SETTLE
+  # ═══════════════════════════════════════════════════════════════════════════════
+  - name: Settle
+    duration_ms: 15000
+    steps:
+      # Dim further
+      - type: light_set
+        target: all
+        kelvin: 2200
+        brightness_pct: 30
+        transition: 10
+        delay_ms: 0
+        
+      - type: light_effect
+        effect: breathe
+        duration: 30
+        intensity: 0.3
+        speed: slow
+        delay_ms: 5000
