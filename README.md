@@ -110,9 +110,9 @@ acts:
 
 ## 🌐 Links
 
-- [Reflectt Skill Pack](https://github.com/reflectt-io/skill-pack) — The MCP skill for agents
-- [Homie Server](https://github.com/reflectt-io/homie) — The hardware controller
+- [Reflectt Skill Pack](https://github.com/itskai-dev/reflectt-skill) — The MCP skill for agents
 - [reflectt.ai](https://reflectt.ai) — Official site
+- [Demo Videos](https://reflectt.ai/magic) — See experiences in action
 
 ---
 
